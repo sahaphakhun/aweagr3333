@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet">
+    <title>admin31 - Gallery Management</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="text"], input[type="url"], input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+
+        .image-list {
+            margin-top: 30px;
+        }
+
+        .image-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            background-color: #f9f9f9;
+        }
+
+        .image-preview {
+            width: 100px;
+            height: 100px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 5px;
+            margin-right: 15px;
+        }
+
+        .image-info {
+            flex: 1;
+        }
+
+        .image-info h3 {
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .image-info p {
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .image-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .upload-area {
+            border: 2px dashed #ccc;
+            border-radius: 10px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+
+        .upload-area:hover {
+            border-color: #007bff;
+        }
+
+        .upload-area.dragover {
+            border-color: #007bff;
+            background-color: #f0f8ff;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>จัดการแกลเลอรี่</h1>
+        
+        <div class="upload-area" id="uploadArea">
+            <p>ลากไฟล์รูปภาพมาวางที่นี่ หรือคลิกเพื่อเลือกไฟล์</p>
+            <input type="file" id="fileInput" accept="image/*" class="hidden">
+        </div>
+
+        <div class="form-group">
+            <label for="linkUrl">ลิงก์ปลายทาง:</label>
+            <input type="url" id="linkUrl" placeholder="https://example.com">
+        </div>
+
+        <button onclick="addImage()">เพิ่มรูปภาพ</button>
+        <button onclick="clearAllImages()" class="btn-danger">ลบทั้งหมด</button>
+
+        <div class="image-list">
+            <h2>รายการรูปภาพ</h2>
+            <div id="imageList"></div>
+        </div>
+    </div>
+
+    <script>
+        // โหลดรายการรูปภาพ
+        function loadImageList() {
+            const images = JSON.parse(localStorage.getItem('galleryImages')) || [];
+            const imageList = document.getElementById('imageList');
+            
+            if (images.length === 0) {
+                imageList.innerHTML = '<p>ยังไม่มีรูปภาพ</p>';
+                return;
+            }
+
+            imageList.innerHTML = '';
+            
+            images.forEach((imageData, index) => {
+                const imageItem = document.createElement('div');
+                imageItem.className = 'image-item';
+                
+                imageItem.innerHTML = `
+                    <div class="image-preview" style="background-image: url(${imageData.imageUrl})"></div>
+                    <div class="image-info">
+                        <h3>รูปภาพ ${index + 1}</h3>
+                        <p><strong>ลิงก์:</strong> ${imageData.linkUrl || 'ไม่มีลิงก์'}</p>
+                    </div>
+                    <div class="image-actions">
+                        <button class="btn-danger" onclick="removeImage(${index})">ลบ</button>
+                    </div>
+                `;
+                
+                imageList.appendChild(imageItem);
+            });
+        }
+
+        // เพิ่มรูปภาพใหม่
+        function addImage() {
+            const fileInput = document.getElementById('fileInput');
+            const linkUrl = document.getElementById('linkUrl').value;
+            
+            if (!fileInput.files[0]) {
+                alert('กรุณาเลือกไฟล์รูปภาพ');
+                return;
+            }
+
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                const images = JSON.parse(localStorage.getItem('galleryImages')) || [];
+                
+                const newImage = {
+                    imageUrl: e.target.result,
+                    linkUrl: linkUrl,
+                    timestamp: Date.now()
+                };
+                
+                images.push(newImage);
+                localStorage.setItem('galleryImages', JSON.stringify(images));
+                
+                // รีเซ็ตฟอร์ม
+                fileInput.value = '';
+                document.getElementById('linkUrl').value = '';
+                
+                // โหลดรายการใหม่
+                loadImageList();
+                
+                alert('เพิ่มรูปภาพเรียบร้อยแล้ว');
+            };
+            
+            reader.readAsDataURL(file);
+        }
+
+        // ลบรูปภาพ
+        function removeImage(index) {
+            if (confirm('คุณแน่ใจหรือไม่ที่จะลบรูปภาพนี้?')) {
+                const images = JSON.parse(localStorage.getItem('galleryImages')) || [];
+                images.splice(index, 1);
+                localStorage.setItem('galleryImages', JSON.stringify(images));
+                loadImageList();
+            }
+        }
+
+        // ลบรูปภาพทั้งหมด
+        function clearAllImages() {
+            if (confirm('คุณแน่ใจหรือไม่ที่จะลบรูปภาพทั้งหมด?')) {
+                localStorage.removeItem('galleryImages');
+                loadImageList();
+                alert('ลบรูปภาพทั้งหมดเรียบร้อยแล้ว');
+            }
+        }
+
+        // จัดการการลากไฟล์
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+
+        uploadArea.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            
+            const files = e.dataTransfer.files;
+            if (files.length > 0 && files[0].type.startsWith('image/')) {
+                fileInput.files = files;
+            } else {
+                alert('กรุณาเลือกไฟล์รูปภาพเท่านั้น');
+            }
+        });
+
+        // โหลดรายการรูปภาพเมื่อหน้าเว็บโหลดเสร็จ
+        document.addEventListener('DOMContentLoaded', loadImageList);
+    </script>
+</body>
+</html>

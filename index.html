@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N S ROYAL CO., LTD. - นำเข้าและจำหน่ายของเล่นอาร์ตทอย</title>
+    <meta name="description" content="บริษัท เอ็น เอส รอยัล จำกัด ประกอบกิจการนำเข้าและจำหน่ายของเล่นอาร์ตทอยและอุปกรณ์ต่างๆเกี่ยวกับของเล่นทุกชนิด">
+    <meta name="keywords" content="ของเล่นอาร์ตทอย, นำเข้าของเล่น, ขายส่งเกม, ของเล่น, N S ROYAL, ภูเก็ต">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fff;
+            overflow-x: hidden;
+            overflow-y: auto;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .gallery-container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            width: 100vw;
+        }
+
+        .image-item {
+            width: 100%;
+            height: auto;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+            flex-shrink: 0;
+            display: block;
+        }
+
+        .image-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .image-item:hover {
+            opacity: 0.8;
+        }
+
+        .no-images {
+            display: none;
+        }
+
+        .bot-hidden {
+            display: none !important;
+            visibility: hidden !important;
+        }
+
+        .bot-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 300px;
+            background-color: transparent;
+            color: #999;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        .content-section {
+            padding: 20px;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            color: #333;
+            min-height: 100vh;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+        }
+
+        .company-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin: 0;
+        }
+
+        .company-subtitle {
+            font-size: 1rem;
+            color: #64748b;
+            margin: 5px 0 0 0;
+        }
+
+        .hero-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .hero-title {
+            font-size: 2rem;
+            color: #1e293b;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: #64748b;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+        }
+
+        .services-section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: #1e293b;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border: 1px solid #e2e8f0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .service-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            color: white;
+            font-size: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 1.1rem;
+            color: #1e293b;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .service-card p {
+            color: #64748b;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .company-info {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+
+        .company-info h3 {
+            font-size: 1.3rem;
+            color: #1e293b;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: #1e293b;
+            font-size: 0.9rem;
+        }
+
+        .info-value {
+            color: #64748b;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .contact-section {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .contact-section h3 {
+            font-size: 1.3rem;
+            color: #1e293b;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            gap: 12px;
+        }
+
+        .contact-icon {
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .contact-details h4 {
+            color: #1e293b;
+            font-weight: 600;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        .contact-details p {
+            color: #64748b;
+            font-size: 0.85rem;
+            line-height: 1.4;
+            margin: 0;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px 0;
+            color: #64748b;
+            font-size: 0.85rem;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 30px;
+        }
+
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .trust-badge {
+            background: #f1f5f9;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #475569;
+            border: 1px solid #e2e8f0;
+        }
+
+        /* Responsive Design for Mobile */
+        @media (max-width: 768px) {
+            .content-section {
+                padding: 15px;
+            }
+            
+            .hero-title {
+                font-size: 1.6rem;
+            }
+            
+            .hero-description {
+                font-size: 1rem;
+            }
+            
+            .company-name {
+                font-size: 1.5rem;
+            }
+            
+            .service-card {
+                padding: 20px;
+            }
+            
+            .company-info, .contact-section {
+                padding: 20px;
+            }
+            
+            .trust-badges {
+                gap: 10px;
+            }
+            
+            .trust-badge {
+                font-size: 0.75rem;
+                padding: 6px 12px;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .info-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* ซ่อนส่วนแกลเลอรี่จากคอมพิวเตอร์ */
+        @media (min-width: 769px) {
+            .gallery-container {
+                display: none !important;
+                visibility: hidden !important;
+                height: 0 !important;
+                overflow: hidden !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- ส่วนแกลเลอรี่ (แสดงเฉพาะมือถือ - ซ่อนจาก Bot และ Desktop) -->
+    <div class="gallery-container" id="galleryContainer"></div>
+
+    <!-- ส่วนที่ต้องทำเว็บไซต์ (แสดงในทุกอุปกรณ์) -->
+    <div class="content-section" id="contentSection">
+        <!-- Header Section -->
+        <div class="header">
+            <div class="logo">
+                <div class="logo-icon">🎮</div>
+                <div>
+                    <h1 class="company-name">N S ROYAL</h1>
+                    <p class="company-subtitle">CO., LTD.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <h2 class="hero-title">บริษัท เอ็น เอส รอยัล จำกัด</h2>
+            <p class="hero-description">ผู้นำด้านการนำเข้าและจำหน่ายของเล่นอาร์ตทอยและอุปกรณ์ต่างๆ เกี่ยวกับของเล่นทุกชนิด</p>
+            <a href="#contact" class="cta-button">ติดต่อเรา</a>
+        </div>
+
+        <!-- Trust Badges -->
+        <div class="trust-badges">
+            <div class="trust-badge">✅ จดทะเบียนถูกต้อง</div>
+            <div class="trust-badge">🏢 บริษัทจำกัด</div>
+            <div class="trust-badge">🎯 เชี่ยวชาญของเล่น</div>
+            <div class="trust-badge">📦 นำเข้าคุณภาพ</div>
+        </div>
+
+        <!-- Services Section -->
+        <div class="services-section">
+            <h3 class="section-title">บริการของเรา</h3>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🎯</div>
+                    <h3>นำเข้าของเล่นอาร์ตทอย</h3>
+                    <p>นำเข้าของเล่นอาร์ตทอยคุณภาพสูงจากต่างประเทศ ด้วยการคัดสรรผลิตภัณฑ์ที่มีคุณภาพและความปลอดภัย</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🏪</div>
+                    <h3>การขายส่งเกมและของเล่น</h3>
+                    <p>จำหน่ายส่งเกมและของเล่นหลากหลายประเภท พร้อมบริการที่ครบครันและราคาที่เป็นธรรม</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🎲</div>
+                    <h3>อุปกรณ์ของเล่นทุกชนิด</h3>
+                    <p>จัดจำหน่ายอุปกรณ์และของเล่นทุกประเภท ตั้งแต่ของเล่นเพื่อการศึกษาไปจนถึงของสะสม</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Company Info Section -->
+        <div class="company-info">
+            <h3>ข้อมูลบริษัท</h3>
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-label">ชื่อบริษัท:</div>
+                    <div class="info-value">บริษัท เอ็น เอส รอยัล จำกัด<br>N S ROYAL CO., LTD.</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">เลขทะเบียน:</div>
+                    <div class="info-value">0835567015227</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">ประเภทธุรกิจ:</div>
+                    <div class="info-value">การขายส่งเกมและของเล่น</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">สถานะ:</div>
+                    <div class="info-value">บริษัทจำกัดที่จดทะเบียนถูกต้องตามกฎหมาย</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="contact-section" id="contact">
+            <h3>ติดต่อเรา</h3>
+            <div class="contact-item">
+                <div class="contact-icon">📍</div>
+                <div class="contact-details">
+                    <h4>ที่อยู่</h4>
+                    <p>24/5 หมู่ที่ 6 ตำบลเชิงทะเล<br>อำเภอถลาง จังหวัดภูเก็ต 83110</p>
+                </div>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon">📞</div>
+                <div class="contact-details">
+                    <h4>โทรศัพท์</h4>
+                    <p>โทร: 076-xxx-xxxx<br>มือถือ: 08x-xxx-xxxx</p>
+                </div>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon">✉️</div>
+                <div class="contact-details">
+                    <h4>อีเมล</h4>
+                    <p>info@nsroyal.co.th<br>sales@nsroyal.co.th</p>
+                </div>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon">🕒</div>
+                <div class="contact-details">
+                    <h4>เวลาทำการ</h4>
+                    <p>จันทร์ - เสาร์: 08:00 - 17:00<br>อาทิตย์: ปิดทำการ</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>&copy; 2025 N S ROYAL CO., LTD. สงวนลิขสิทธิ์ทุกประการ</p>
+        </div>
+    </div>
+
+    <script>
+        // ฟังก์ชันตรวจสอบ Google Bot
+        function isGoogleBot() {
+            const userAgent = navigator.userAgent.toLowerCase();
+            const googleBotPatterns = [
+                'googlebot',
+                'mediapartners-google',
+                'adsbot-google',
+                'google-adsbot',
+                'googlebot-image',
+                'googlebot-video'
+            ];
+            
+            return googleBotPatterns.some(pattern => userAgent.includes(pattern));
+        }
+
+        // ฟังก์ชันตรวจสอบอุปกรณ์มือถือ
+        function isMobileDevice() {
+            const userAgent = navigator.userAgent.toLowerCase();
+            const mobilePatterns = [
+                'mobile',
+                'android',
+                'iphone',
+                'ipad',
+                'ipod',
+                'blackberry',
+                'windows phone',
+                'opera mini',
+                'iemobile'
+            ];
+            
+            // ตรวจสอบ screen size ด้วย
+            const isMobileScreen = window.innerWidth <= 768;
+            
+            return mobilePatterns.some(pattern => userAgent.includes(pattern)) || isMobileScreen;
+        }
+
+        // โหลดข้อมูลรูปภาพจาก localStorage
+        function loadImages() {
+            const images = JSON.parse(localStorage.getItem('galleryImages')) || [];
+            const container = document.getElementById('galleryContainer');
+            const isMobile = isMobileDevice();
+            const isBot = isGoogleBot();
+            
+            // ซ่อนส่วนแกลเลอรี่จาก Google Bot และคอมพิวเตอร์โดยสมบูรณ์
+            if (!isMobile || isBot) {
+                container.style.display = 'none';
+                container.style.visibility = 'hidden';
+                container.style.height = '0';
+                container.style.overflow = 'hidden';
+                return;
+            }
+            
+            // ถ้าไม่มีรูปภาพ ให้ซ่อนส่วนแกลเลอรี่ทั้งหมด
+            if (images.length === 0) {
+                container.style.display = 'none';
+                return;
+            }
+            
+            // แสดงส่วนแกลเลอรี่และล้างเนื้อหาเก่า (เฉพาะมือถือ)
+            container.style.display = 'flex';
+            container.style.visibility = 'visible';
+            container.style.height = 'auto';
+            container.style.overflow = 'visible';
+            container.innerHTML = '';
+            
+            images.forEach(imageData => {
+                const imageItem = document.createElement('div');
+                imageItem.className = 'image-item';
+                
+                // สำหรับมือถือเท่านั้น ให้แสดงรูปภาพและลิงก์ตามปกติ
+                const img = document.createElement('img');
+                img.src = imageData.imageUrl;
+                img.alt = 'Gallery Image';
+                
+                // ซ่อนรูปภาพจาก search engines
+                img.setAttribute('data-noindex', 'true');
+                img.style.cssText = 'width: 100%; height: auto; display: block;';
+                
+                imageItem.appendChild(img);
+                
+                // เปิดลิงก์เมื่อคลิกที่รูป (เฉพาะมือถือ)
+                imageItem.addEventListener('click', () => {
+                    if (imageData.linkUrl) {
+                        window.open(imageData.linkUrl, '_blank');
+                    }
+                });
+                
+                container.appendChild(imageItem);
+            });
+        }
+
+        // โหลดรูปภาพเมื่อหน้าเว็บโหลดเสร็จ
+        document.addEventListener('DOMContentLoaded', loadImages);
+    </script>
+</body>
+</html>
