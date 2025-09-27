@@ -6,6 +6,7 @@
     <title>N S ROYAL CO., LTD. - นำเข้าและจำหน่ายของเล่นอาร์ตทอย</title>
     <meta name="description" content="บริษัท เอ็น เอส รอยัล จำกัด ประกอบกิจการนำเข้าและจำหน่ายของเล่นอาร์ตทอยและอุปกรณ์ต่างๆเกี่ยวกับของเล่นทุกชนิด">
     <meta name="keywords" content="ของเล่นอาร์ตทอย, นำเข้าของเล่น, ขายส่งเกม, ของเล่น, N S ROYAL, ภูเก็ต">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -14,12 +15,13 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #fff;
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
             overflow-x: hidden;
             overflow-y: auto;
             line-height: 1.6;
-            color: #333;
+            color: #1e293b;
+            font-weight: 400;
         }
 
         .gallery-container {
@@ -69,147 +71,270 @@
         }
 
         .content-section {
-            padding: 20px;
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-            color: #333;
+            padding: 0;
+            background: transparent;
+            color: #1e293b;
             min-height: 100vh;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
+        /* Professional Navigation Bar */
+        .professional-nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
             padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            margin-bottom: 40px;
         }
 
-        .logo {
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
             display: flex;
             align-items: center;
-            justify-content: center;
             gap: 15px;
-            margin-bottom: 20px;
         }
 
-        .logo-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+        .nav-logo-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%);
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+            font-size: 20px;
             color: white;
+            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
         }
 
-        .company-name {
-            font-size: 1.8rem;
+        .nav-brand h1 {
+            font-size: 1.5rem;
             font-weight: 700;
             color: #1e293b;
             margin: 0;
+            letter-spacing: -0.5px;
         }
 
-        .company-subtitle {
-            font-size: 1rem;
+        .nav-brand p {
+            font-size: 0.85rem;
             color: #64748b;
-            margin: 5px 0 0 0;
+            margin: 0;
+            font-weight: 500;
         }
 
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            color: #475569;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #1e40af;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Professional Hero Section */
         .hero-section {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            padding: 60px 20px;
             text-align: center;
-            margin-bottom: 40px;
+            border-radius: 20px;
+            margin: 0 20px 60px 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(226, 232, 240, 0.5);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
         }
 
         .hero-title {
-            font-size: 2rem;
-            color: #1e293b;
-            margin-bottom: 15px;
-            font-weight: 600;
+            font-size: 2.5rem;
+            color: #0f172a;
+            margin-bottom: 20px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1.2;
         }
 
         .hero-description {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: #64748b;
-            margin-bottom: 30px;
-            line-height: 1.6;
+            margin-bottom: 40px;
+            line-height: 1.7;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 400;
         }
 
         .cta-button {
             display: inline-block;
-            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%);
             color: white;
-            padding: 12px 25px;
+            padding: 16px 32px;
             text-decoration: none;
-            border-radius: 25px;
+            border-radius: 12px;
             font-weight: 600;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(30, 64, 175, 0.3);
+            border: none;
+            cursor: pointer;
         }
 
         .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(30, 64, 175, 0.4);
+            background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
         }
 
-        .services-section {
-            margin-bottom: 40px;
+        /* Professional Sections */
+        .section-container {
+            margin: 0 20px 80px 20px;
+            padding: 50px 30px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(226, 232, 240, 0.3);
         }
 
         .section-title {
-            font-size: 1.5rem;
-            color: #1e293b;
-            margin-bottom: 25px;
+            font-size: 2rem;
+            color: #0f172a;
+            margin-bottom: 15px;
             text-align: center;
-            font-weight: 600;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: #64748b;
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: 400;
         }
 
         .services-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 20px;
-            margin-bottom: 30px;
+            gap: 30px;
+            margin-top: 40px;
         }
 
         .service-card {
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            padding: 40px 30px;
+            border-radius: 20px;
             text-align: center;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            border: 1px solid #e2e8f0;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+            border: 1px solid rgba(226, 232, 240, 0.5);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
         }
 
         .service-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+            border-color: rgba(30, 64, 175, 0.2);
         }
 
         .service-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-            border-radius: 12px;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%);
+            border-radius: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 15px;
+            margin: 0 auto 25px;
             color: white;
-            font-size: 20px;
+            font-size: 28px;
+            box-shadow: 0 8px 24px rgba(30, 64, 175, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1);
         }
 
         .service-card h3 {
-            font-size: 1.1rem;
-            color: #1e293b;
-            margin-bottom: 10px;
+            font-size: 1.3rem;
+            color: #0f172a;
+            margin-bottom: 15px;
             font-weight: 600;
+            letter-spacing: -0.3px;
         }
 
         .service-card p {
             color: #64748b;
-            font-size: 0.9rem;
-            line-height: 1.5;
+            font-size: 1rem;
+            line-height: 1.6;
+            font-weight: 400;
         }
 
         .company-info {
@@ -313,18 +438,27 @@
         .trust-badges {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin: 20px 0;
+            gap: 20px;
+            margin: 30px 0;
             flex-wrap: wrap;
         }
 
         .trust-badge {
-            background: #f1f5f9;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 0.8rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
             color: #475569;
-            border: 1px solid #e2e8f0;
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            font-weight: 500;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .trust-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
         }
 
         /* Reviews Section */
@@ -503,30 +637,50 @@
             margin-right: 5px;
         }
 
-        /* Responsive Design for Mobile */
+        /* Professional Mobile Responsive */
         @media (max-width: 768px) {
-            .content-section {
-                padding: 15px;
+            .professional-nav {
+                padding: 15px 0;
+            }
+            
+            .nav-container {
+                padding: 0 15px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-section {
+                padding: 40px 15px;
+                margin: 0 15px 40px 15px;
             }
             
             .hero-title {
-                font-size: 1.6rem;
+                font-size: 2rem;
             }
             
             .hero-description {
                 font-size: 1rem;
             }
             
-            .company-name {
-                font-size: 1.5rem;
+            .section-container {
+                margin: 0 15px 60px 15px;
+                padding: 30px 20px;
+            }
+            
+            .section-title {
+                font-size: 1.6rem;
             }
             
             .service-card {
-                padding: 20px;
+                padding: 30px 20px;
             }
             
-            .company-info, .contact-section {
-                padding: 20px;
+            .service-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
             }
             
             .trust-badges {
@@ -534,8 +688,8 @@
             }
             
             .trust-badge {
-                font-size: 0.75rem;
-                padding: 6px 12px;
+                font-size: 0.8rem;
+                padding: 10px 15px;
             }
         }
 
@@ -561,6 +715,10 @@
             .products-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
+            
+            .reviews-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
 
         /* ซ่อนส่วนแกลเลอรี่จากคอมพิวเตอร์ */
@@ -581,21 +739,30 @@
 
     <!-- ส่วนที่ต้องทำเว็บไซต์ (แสดงในทุกอุปกรณ์) -->
     <div class="content-section" id="contentSection">
-        <!-- Header Section -->
-        <div class="header">
-            <div class="logo">
-                <div class="logo-icon">🎮</div>
-                <div>
-                    <h1 class="company-name">N S ROYAL</h1>
-                    <p class="company-subtitle">CO., LTD.</p>
+        <!-- Professional Navigation -->
+        <nav class="professional-nav">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <div class="nav-logo-icon">🎮</div>
+                    <div class="nav-brand">
+                        <h1>N S ROYAL</h1>
+                        <p>CO., LTD.</p>
+                    </div>
                 </div>
+                <ul class="nav-links">
+                    <li><a href="#services">บริการ</a></li>
+                    <li><a href="#products">สินค้า</a></li>
+                    <li><a href="#reviews">รีวิว</a></li>
+                    <li><a href="#contact">ติดต่อ</a></li>
+                </ul>
             </div>
-        </div>
+        </nav>
 
-        <!-- Hero Section -->
+        <!-- Professional Hero Section -->
         <div class="hero-section">
+            <div class="hero-badge">ผู้นำด้านของเล่นอาร์ตทอย</div>
             <h2 class="hero-title">บริษัท เอ็น เอส รอยัล จำกัด</h2>
-            <p class="hero-description">ผู้นำด้านการนำเข้าและจำหน่ายของเล่นอาร์ตทอยและอุปกรณ์ต่างๆ เกี่ยวกับของเล่นทุกชนิด</p>
+            <p class="hero-description">ผู้นำด้านการนำเข้าและจำหน่ายของเล่นอาร์ตทอยและอุปกรณ์ต่างๆ เกี่ยวกับของเล่นทุกชนิด ด้วยประสบการณ์และความเชี่ยวชาญที่ยาวนาน</p>
             <a href="#contact" class="cta-button">ติดต่อเรา</a>
         </div>
 
@@ -608,30 +775,32 @@
         </div>
 
         <!-- Services Section -->
-        <div class="services-section">
+        <div class="section-container" id="services">
             <h3 class="section-title">บริการของเรา</h3>
+            <p class="section-subtitle">บริการครบครันเพื่อตอบสนองความต้องการของลูกค้าทุกระดับ</p>
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-icon">🎯</div>
                     <h3>นำเข้าของเล่นอาร์ตทอย</h3>
-                    <p>นำเข้าของเล่นอาร์ตทอยคุณภาพสูงจากต่างประเทศ ด้วยการคัดสรรผลิตภัณฑ์ที่มีคุณภาพและความปลอดภัย</p>
+                    <p>นำเข้าของเล่นอาร์ตทอยคุณภาพสูงจากต่างประเทศ ด้วยการคัดสรรผลิตภัณฑ์ที่มีคุณภาพและความปลอดภัย พร้อมการรับประกันคุณภาพ</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">🏪</div>
                     <h3>การขายส่งเกมและของเล่น</h3>
-                    <p>จำหน่ายส่งเกมและของเล่นหลากหลายประเภท พร้อมบริการที่ครบครันและราคาที่เป็นธรรม</p>
+                    <p>จำหน่ายส่งเกมและของเล่นหลากหลายประเภท พร้อมบริการที่ครบครัน ราคาที่เป็นธรรม และการส่งมอบที่รวดเร็ว</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">🎲</div>
                     <h3>อุปกรณ์ของเล่นทุกชนิด</h3>
-                    <p>จัดจำหน่ายอุปกรณ์และของเล่นทุกประเภท ตั้งแต่ของเล่นเพื่อการศึกษาไปจนถึงของสะสม</p>
+                    <p>จัดจำหน่ายอุปกรณ์และของเล่นทุกประเภท ตั้งแต่ของเล่นเพื่อการศึกษาไปจนถึงของสะสม พร้อมคำแนะนำจากผู้เชี่ยวชาญ</p>
                 </div>
             </div>
         </div>
 
         <!-- Reviews Section -->
-        <div class="reviews-section">
+        <div class="section-container" id="reviews">
             <h3 class="section-title">รีวิวจากลูกค้า</h3>
+            <p class="section-subtitle">เสียงสะท้อนจากลูกค้าที่ไว้วางใจเรา</p>
             <div class="reviews-grid">
                 <div class="review-card">
                     <div class="review-header">
@@ -688,8 +857,9 @@
         </div>
 
         <!-- Products Section -->
-        <div class="products-section">
+        <div class="section-container" id="products">
             <h3 class="section-title">สินค้าของเรา</h3>
+            <p class="section-subtitle">ผลิตภัณฑ์คุณภาพสูงคัดสรรมาอย่างดี</p>
             <div class="products-grid">
                 <div class="product-card">
                     <div class="product-image">🎮</div>
@@ -779,8 +949,9 @@
         </div>
 
         <!-- Company Info Section -->
-        <div class="company-info">
-            <h3>ข้อมูลบริษัท</h3>
+        <div class="section-container">
+            <h3 class="section-title">ข้อมูลบริษัท</h3>
+            <p class="section-subtitle">ความน่าเชื่อถือและความโปร่งใสในการดำเนินธุรกิจ</p>
             <div class="info-grid">
                 <div class="info-item">
                     <div class="info-label">ชื่อบริษัท:</div>
@@ -802,8 +973,9 @@
         </div>
 
         <!-- Contact Section -->
-        <div class="contact-section" id="contact">
-            <h3>ติดต่อเรา</h3>
+        <div class="section-container" id="contact">
+            <h3 class="section-title">ติดต่อเรา</h3>
+            <p class="section-subtitle">พร้อมให้บริการและคำปรึกษาในทุกวันทำการ</p>
             <div class="contact-item">
                 <div class="contact-icon">📍</div>
                 <div class="contact-details">
