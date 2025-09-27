@@ -327,6 +327,182 @@
             border: 1px solid #e2e8f0;
         }
 
+        /* Reviews Section */
+        .reviews-section {
+            margin-bottom: 40px;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .review-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border: 1px solid #e2e8f0;
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            gap: 15px;
+        }
+
+        .reviewer-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .reviewer-info h4 {
+            color: #1e293b;
+            margin: 0 0 5px 0;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .reviewer-info p {
+            color: #64748b;
+            margin: 0;
+            font-size: 0.85rem;
+        }
+
+        .stars {
+            display: flex;
+            gap: 3px;
+            margin-bottom: 10px;
+        }
+
+        .star {
+            color: #fbbf24;
+            font-size: 1.1rem;
+        }
+
+        .review-text {
+            color: #475569;
+            line-height: 1.6;
+            font-size: 0.9rem;
+        }
+
+        /* Products Section */
+        .products-section {
+            margin-bottom: 40px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #94a3b8;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-title {
+            font-size: 1.1rem;
+            color: #1e293b;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .product-description {
+            color: #64748b;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .product-price {
+            font-size: 1.2rem;
+            color: #2563eb;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-buy {
+            flex: 1;
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            font-size: 0.9rem;
+        }
+
+        .btn-buy:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-cart {
+            background: #f8fafc;
+            color: #475569;
+            border: 2px solid #e2e8f0;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+        }
+
+        .btn-cart:hover {
+            background: #e2e8f0;
+            border-color: #cbd5e1;
+        }
+
+        .cart-icon {
+            margin-right: 5px;
+        }
+
         /* Responsive Design for Mobile */
         @media (max-width: 768px) {
             .content-section {
@@ -370,6 +546,20 @@
             
             .info-grid {
                 grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .reviews-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
             }
         }
 
@@ -435,6 +625,155 @@
                     <div class="service-icon">🎲</div>
                     <h3>อุปกรณ์ของเล่นทุกชนิด</h3>
                     <p>จัดจำหน่ายอุปกรณ์และของเล่นทุกประเภท ตั้งแต่ของเล่นเพื่อการศึกษาไปจนถึงของสะสม</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reviews Section -->
+        <div class="reviews-section">
+            <h3 class="section-title">รีวิวจากลูกค้า</h3>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-avatar">ส</div>
+                        <div class="reviewer-info">
+                            <h4>สมชาย ใจดี</h4>
+                            <p>ลูกค้าประจำ</p>
+                        </div>
+                    </div>
+                    <div class="stars">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <p class="review-text">"ของเล่นคุณภาพดีมาก ราคาเป็นธรรม บริการดีเยี่ยม แนะนำเลยครับ"</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-avatar">น</div>
+                        <div class="reviewer-info">
+                            <h4>นางสาว นิรันดร์</h4>
+                            <p>ลูกค้าใหม่</p>
+                        </div>
+                    </div>
+                    <div class="stars">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <p class="review-text">"สั่งของเล่นให้ลูก มาส่งเร็วมาก ลูกชอบมากเลย ขอบคุณครับ"</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-avatar">ก</div>
+                        <div class="reviewer-info">
+                            <h4>คุณ กิตติ</h4>
+                            <p>ร้านค้าคู่ค้า</p>
+                        </div>
+                    </div>
+                    <div class="stars">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <p class="review-text">"เป็นคู่ค้าดีมาก ราคาส่งดี บริการครบครัน ลูกค้าชอบของเล่นจากที่นี่"</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Products Section -->
+        <div class="products-section">
+            <h3 class="section-title">สินค้าของเรา</h3>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">🎮</div>
+                    <div class="product-info">
+                        <h4 class="product-title">ของเล่นอาร์ตทอย Premium</h4>
+                        <p class="product-description">ของเล่นอาร์ตทอยคุณภาพสูง นำเข้าจากญี่ปุ่น เหมาะสำหรับนักสะสม</p>
+                        <div class="product-price">฿1,299</div>
+                        <div class="product-actions">
+                            <button class="btn-buy">เลือกซื้อ</button>
+                            <button class="btn-cart">
+                                <span class="cart-icon">🛒</span>ตระกร้า
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">🧸</div>
+                    <div class="product-info">
+                        <h4 class="product-title">ตุ๊กตาอาร์ตทอย</h4>
+                        <p class="product-description">ตุ๊กตาน่ารัก วัสดุคุณภาพดี ปลอดภัยสำหรับเด็ก</p>
+                        <div class="product-price">฿599</div>
+                        <div class="product-actions">
+                            <button class="btn-buy">เลือกซื้อ</button>
+                            <button class="btn-cart">
+                                <span class="cart-icon">🛒</span>ตระกร้า
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">🎲</div>
+                    <div class="product-info">
+                        <h4 class="product-title">เกมกระดาน Premium</h4>
+                        <p class="product-description">เกมกระดานคุณภาพสูง เหมาะสำหรับครอบครัว</p>
+                        <div class="product-price">฿899</div>
+                        <div class="product-actions">
+                            <button class="btn-buy">เลือกซื้อ</button>
+                            <button class="btn-cart">
+                                <span class="cart-icon">🛒</span>ตระกร้า
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">🚗</div>
+                    <div class="product-info">
+                        <h4 class="product-title">รถของเล่น RC</h4>
+                        <p class="product-description">รถบังคับวิทยุ คุณภาพดี ควบคุมได้ไกล 50 เมตร</p>
+                        <div class="product-price">฿1,599</div>
+                        <div class="product-actions">
+                            <button class="btn-buy">เลือกซื้อ</button>
+                            <button class="btn-cart">
+                                <span class="cart-icon">🛒</span>ตระกร้า
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">🧩</div>
+                    <div class="product-info">
+                        <h4 class="product-title">จิ๊กซอว์ 3D</h4>
+                        <p class="product-description">จิ๊กซอว์ 3 มิติ ฝึกสมอง พัฒนาทักษะ</p>
+                        <div class="product-price">฿399</div>
+                        <div class="product-actions">
+                            <button class="btn-buy">เลือกซื้อ</button>
+                            <button class="btn-cart">
+                                <span class="cart-icon">🛒</span>ตระกร้า
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">🎨</div>
+                    <div class="product-info">
+                        <h4 class="product-title">ชุดศิลปะเด็ก</h4>
+                        <p class="product-description">ชุดวาดภาพ ปลอดภัย กระตุ้นความคิดสร้างสรรค์</p>
+                        <div class="product-price">฿299</div>
+                        <div class="product-actions">
+                            <button class="btn-buy">เลือกซื้อ</button>
+                            <button class="btn-cart">
+                                <span class="cart-icon">🛒</span>ตระกร้า
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -595,6 +934,39 @@
 
         // โหลดรูปภาพเมื่อหน้าเว็บโหลดเสร็จ
         document.addEventListener('DOMContentLoaded', loadImages);
+
+        // ฟังก์ชันสำหรับปุ่มเลือกซื้อ
+        function handleBuyClick(productName, price) {
+            alert(`คุณเลือกซื้อ: ${productName}\nราคา: ${price}\n\nกรุณาติดต่อเราเพื่อดำเนินการสั่งซื้อ\nโทร: 076-xxx-xxxx`);
+        }
+
+        // ฟังก์ชันสำหรับปุ่มตระกร้า
+        function handleCartClick(productName, price) {
+            alert(`เพิ่ม ${productName} เข้าตระกร้าแล้ว!\nราคา: ${price}\n\nกรุณาติดต่อเราเพื่อดำเนินการสั่งซื้อ\nโทร: 076-xxx-xxxx`);
+        }
+
+        // เพิ่ม event listeners สำหรับปุ่มต่างๆ
+        document.addEventListener('DOMContentLoaded', function() {
+            // ปุ่มเลือกซื้อ
+            document.querySelectorAll('.btn-buy').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productCard = this.closest('.product-card');
+                    const productName = productCard.querySelector('.product-title').textContent;
+                    const price = productCard.querySelector('.product-price').textContent;
+                    handleBuyClick(productName, price);
+                });
+            });
+
+            // ปุ่มตระกร้า
+            document.querySelectorAll('.btn-cart').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productCard = this.closest('.product-card');
+                    const productName = productCard.querySelector('.product-title').textContent;
+                    const price = productCard.querySelector('.product-price').textContent;
+                    handleCartClick(productName, price);
+                });
+            });
+        });
     </script>
 </body>
 </html>
