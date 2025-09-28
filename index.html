@@ -566,6 +566,29 @@
             justify-content: center;
             font-size: 3rem;
             color: #94a3b8;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            font-size: 3rem;
+            color: #94a3b8;
         }
 
         .product-info {
@@ -862,7 +885,9 @@
             <p class="section-subtitle">ผลิตภัณฑ์คุณภาพสูงคัดสรรมาอย่างดี</p>
             <div class="products-grid">
                 <div class="product-card">
-                    <div class="product-image">🎮</div>
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop&crop=center" alt="ของเล่นอาร์ตทอย Premium" onerror="this.parentElement.innerHTML='<div class=\'product-placeholder\'>🎮</div>'">
+                    </div>
                     <div class="product-info">
                         <h4 class="product-title">ของเล่นอาร์ตทอย Premium</h4>
                         <p class="product-description">ของเล่นอาร์ตทอยคุณภาพสูง นำเข้าจากญี่ปุ่น เหมาะสำหรับนักสะสม</p>
@@ -876,7 +901,9 @@
                     </div>
                 </div>
                 <div class="product-card">
-                    <div class="product-image">🧸</div>
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&h=400&fit=crop&crop=center" alt="ตุ๊กตาอาร์ตทอย" onerror="this.parentElement.innerHTML='<div class=\'product-placeholder\'>🧸</div>'">
+                    </div>
                     <div class="product-info">
                         <h4 class="product-title">ตุ๊กตาอาร์ตทอย</h4>
                         <p class="product-description">ตุ๊กตาน่ารัก วัสดุคุณภาพดี ปลอดภัยสำหรับเด็ก</p>
@@ -890,7 +917,9 @@
                     </div>
                 </div>
                 <div class="product-card">
-                    <div class="product-image">🎲</div>
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=400&h=400&fit=crop&crop=center" alt="เกมกระดาน Premium" onerror="this.parentElement.innerHTML='<div class=\'product-placeholder\'>🎲</div>'">
+                    </div>
                     <div class="product-info">
                         <h4 class="product-title">เกมกระดาน Premium</h4>
                         <p class="product-description">เกมกระดานคุณภาพสูง เหมาะสำหรับครอบครัว</p>
@@ -904,7 +933,9 @@
                     </div>
                 </div>
                 <div class="product-card">
-                    <div class="product-image">🚗</div>
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&h=400&fit=crop&crop=center" alt="รถของเล่น RC" onerror="this.parentElement.innerHTML='<div class=\'product-placeholder\'>🚗</div>'">
+                    </div>
                     <div class="product-info">
                         <h4 class="product-title">รถของเล่น RC</h4>
                         <p class="product-description">รถบังคับวิทยุ คุณภาพดี ควบคุมได้ไกล 50 เมตร</p>
@@ -918,7 +949,9 @@
                     </div>
                 </div>
                 <div class="product-card">
-                    <div class="product-image">🧩</div>
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=400&h=400&fit=crop&crop=center" alt="จิ๊กซอว์ 3D" onerror="this.parentElement.innerHTML='<div class=\'product-placeholder\'>🧩</div>'">
+                    </div>
                     <div class="product-info">
                         <h4 class="product-title">จิ๊กซอว์ 3D</h4>
                         <p class="product-description">จิ๊กซอว์ 3 มิติ ฝึกสมอง พัฒนาทักษะ</p>
@@ -932,7 +965,9 @@
                     </div>
                 </div>
                 <div class="product-card">
-                    <div class="product-image">🎨</div>
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=400&h=400&fit=crop&crop=center" alt="ชุดศิลปะเด็ก" onerror="this.parentElement.innerHTML='<div class=\'product-placeholder\'>🎨</div>'">
+                    </div>
                     <div class="product-info">
                         <h4 class="product-title">ชุดศิลปะเด็ก</h4>
                         <p class="product-description">ชุดวาดภาพ ปลอดภัย กระตุ้นความคิดสร้างสรรค์</p>
