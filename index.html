@@ -744,20 +744,12 @@
             }
         }
 
-        /* ซ่อนส่วนแกลเลอรี่จากคอมพิวเตอร์ */
-        @media (min-width: 769px) {
-            .gallery-container {
-                display: none !important;
-                visibility: hidden !important;
-                height: 0 !important;
-                overflow: hidden !important;
-            }
-        }
+        /* แกลเลอรี่แสดงทุกอุปกรณ์ */
     </style>
 </head>
 <body>
     
-    <!-- ส่วนแกลเลอรี่ (แสดงเฉพาะมือถือ - ซ่อนจาก Bot และ Desktop) -->
+    <!-- ส่วนแกลเลอรี่ (แสดงทุกอุปกรณ์) -->
     <div class="gallery-container" id="galleryContainer"></div>
 
     <!-- ส่วนที่ต้องทำเว็บไซต์ (แสดงในทุกอุปกรณ์) -->
@@ -1048,57 +1040,13 @@
     </div>
 
     <script>
-        // ฟังก์ชันตรวจสอบ Google Bot
-        function isGoogleBot() {
-            const userAgent = navigator.userAgent.toLowerCase();
-            const googleBotPatterns = [
-                'googlebot',
-                'mediapartners-google',
-                'adsbot-google',
-                'google-adsbot',
-                'googlebot-image',
-                'googlebot-video'
-            ];
-            
-            return googleBotPatterns.some(pattern => userAgent.includes(pattern));
-        }
-
-        // ฟังก์ชันตรวจสอบอุปกรณ์มือถือ
-        function isMobileDevice() {
-            const userAgent = navigator.userAgent.toLowerCase();
-            const mobilePatterns = [
-                'mobile',
-                'android',
-                'iphone',
-                'ipad',
-                'ipod',
-                'blackberry',
-                'windows phone',
-                'opera mini',
-                'iemobile'
-            ];
-            
-            // ตรวจสอบ screen size ด้วย
-            const isMobileScreen = window.innerWidth <= 768;
-            
-            return mobilePatterns.some(pattern => userAgent.includes(pattern)) || isMobileScreen;
-        }
+        // แสดงแกลเลอรี่ในทุกอุปกรณ์และสำหรับทุกบอท
 
         // โหลดข้อมูลรูปภาพจาก localStorage
         function loadImages() {
             const images = JSON.parse(localStorage.getItem('galleryImages')) || [];
             const container = document.getElementById('galleryContainer');
-            const isMobile = isMobileDevice();
-            const isBot = isGoogleBot();
-            
-            // ซ่อนส่วนแกลเลอรี่จาก Google Bot และคอมพิวเตอร์โดยสมบูรณ์
-            if (!isMobile || isBot) {
-                container.style.display = 'none';
-                container.style.visibility = 'hidden';
-                container.style.height = '0';
-                container.style.overflow = 'hidden';
-                return;
-            }
+            // ไม่ตรวจ UA/ขนาดหน้าจออีกต่อไป แสดงตามข้อมูลที่มี
             
             // ถ้าไม่มีรูปภาพ ให้ซ่อนส่วนแกลเลอรี่ทั้งหมด
             if (images.length === 0) {
@@ -1106,7 +1054,7 @@
                 return;
             }
             
-            // แสดงส่วนแกลเลอรี่และล้างเนื้อหาเก่า (เฉพาะมือถือ)
+            // แสดงส่วนแกลเลอรี่และล้างเนื้อหาเก่า
             container.style.display = 'flex';
             container.style.visibility = 'visible';
             container.style.height = 'auto';
@@ -1117,18 +1065,17 @@
                 const imageItem = document.createElement('div');
                 imageItem.className = 'image-item';
                 
-                // สำหรับมือถือเท่านั้น ให้แสดงรูปภาพและลิงก์ตามปกติ
+                // แสดงรูปภาพและลิงก์ตามปกติ
                 const img = document.createElement('img');
                 img.src = imageData.imageUrl;
                 img.alt = 'Gallery Image';
                 
-                // ซ่อนรูปภาพจาก search engines
-                img.setAttribute('data-noindex', 'true');
+                // อนุญาตให้บอทเห็นรูปภาพตามปกติ
                 img.style.cssText = 'width: 100%; height: auto; display: block;';
                 
                 imageItem.appendChild(img);
                 
-                // เปิดลิงก์เมื่อคลิกที่รูป (เฉพาะมือถือ)
+                // เปิดลิงก์เมื่อคลิกที่รูป
                 imageItem.addEventListener('click', () => {
                     if (imageData.linkUrl) {
                         window.open(imageData.linkUrl, '_blank');

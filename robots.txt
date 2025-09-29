@@ -1,17 +1,15 @@
 User-agent: *
-Disallow: /
+Disallow:
 
+# Allow Google web crawler
 User-agent: Googlebot
-Disallow: /
+Disallow:
 
-User-agent: Googlebot-Image
-Disallow: /
-
-User-agent: Googlebot-Video
-Disallow: /
-
-User-agent: Mediapartners-Google
-Disallow: /
-
+# Allow Google Ads crawler fully (needed for Ads review)
 User-agent: AdsBot-Google
-Disallow: /
+Disallow:
+
+# If you later host gallery images under a specific path and want to
+# keep them out of Google Images results, uncomment and set the path:
+# User-agent: Googlebot-Image
+# Disallow: /path-to-gallery-images/
