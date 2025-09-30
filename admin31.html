@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="th">
 <head>
     <meta charset="UTF-8">
@@ -7,157 +7,63 @@
     <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet">
     <title>admin31 - Gallery Management</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-            color: #333;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #555;
-        }
-
-        input[type="text"], input[type="url"], input[type="file"] {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-
-        button {
-            background-color: #007bff;
-            color: white;
-            padding: 12px 24px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            margin-right: 10px;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-
-        .btn-danger {
-            background-color: #dc3545;
-        }
-
-        .btn-danger:hover {
-            background-color: #c82333;
-        }
-
-        .image-list {
-            margin-top: 30px;
-        }
-
-        .image-item {
-            display: flex;
-            align-items: center;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            background-color: #f9f9f9;
-        }
-
-        .image-preview {
-            width: 100px;
-            height: 100px;
-            background-size: cover;
-            background-position: center;
-            border-radius: 5px;
-            margin-right: 15px;
-        }
-
-        .image-info {
-            flex: 1;
-        }
-
-        .image-info h3 {
-            margin-bottom: 5px;
-            color: #333;
-        }
-
-        .image-info p {
-            color: #666;
-            margin-bottom: 5px;
-        }
-
-        .image-actions {
-            display: flex;
-            gap: 10px;
-        }
-
-        .upload-area {
-            border: 2px dashed #ccc;
-            border-radius: 10px;
-            padding: 40px;
-            text-align: center;
-            margin-bottom: 20px;
-            cursor: pointer;
-            transition: border-color 0.3s;
-        }
-
-        .upload-area:hover {
-            border-color: #007bff;
-        }
-
-        .upload-area.dragover {
-            border-color: #007bff;
-            background-color: #f0f8ff;
-        }
-
-        .hidden {
-            display: none;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background-color: #f5f5f5; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { text-align: center; margin-bottom: 30px; color: #333; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; color: #555; }
+        input[type="text"], input[type="url"], input[type="file"] { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px; }
+        button { background-color: #007bff; color: white; padding: 12px 24px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; margin-right: 10px; }
+        button:hover { background-color: #0056b3; }
+        .btn-danger { background-color: #dc3545; }
+        .btn-danger:hover { background-color: #c82333; }
+        .image-list { margin-top: 30px; }
+        .image-item { display: flex; align-items: center; padding: 15px; border: 1px solid #ddd; border-radius: 5px; margin-bottom: 10px; background-color: #f9f9f9; }
+        .image-preview { width: 100px; height: 100px; background-size: cover; background-position: center; border-radius: 5px; margin-right: 15px; }
+        .image-info { flex: 1; }
+        .image-info h3 { margin-bottom: 5px; color: #333; }
+        .image-info p { color: #666; margin-bottom: 5px; }
+        .image-actions { display: flex; gap: 10px; }
+        .upload-area { border: 2px dashed #ccc; border-radius: 10px; padding: 40px; text-align: center; margin-bottom: 20px; cursor: pointer; transition: border-color 0.3s; }
+        .upload-area:hover { border-color: #007bff; }
+        .upload-area.dragover { border-color: #007bff; background-color: #f0f8ff; }
+        .hidden { display: none; }
+        .status { margin: 15px 0 10px; padding: 12px 14px; border-radius: 6px; font-size: 14px; }
+        .status.info { background: #e8f1ff; color: #1e60d1; border: 1px solid #c8ddff; }
+        .status.success { background: #e9f7ef; color: #1e7e34; border: 1px solid #c9efd8; }
+        .status.error { background: #fdecea; color: #b02a37; border: 1px solid #f5c2c7; }
+        .actions-row { display: flex; gap: 10px; align-items: center; margin-bottom: 10px; }
+        .muted { color: #777; font-size: 13px; }
+        .preview { width: 140px; height: 140px; border-radius: 8px; background-color: #f0f0f0; background-size: cover; background-position: center; border: 1px solid #eee; margin: 10px 0; }
+        .btn-outline { background: white; color: #007bff; border: 1px solid #007bff; }
+        .btn-outline:hover { background: #e6f0ff; }
+        .image-actions button { white-space: nowrap; }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>จัดการแกลเลอรี่</h1>
-        
-        <div class="upload-area" id="uploadArea">
-            <p>ลากไฟล์รูปภาพมาวางที่นี่ หรือคลิกเพื่อเลือกไฟล์</p>
-            <input type="file" id="fileInput" accept="image/*" class="hidden">
+
+        <div id="statusArea" class="status info hidden">พร้อมใช้งาน</div>
+
+        <div class="upload-area" id="uploadArea" aria-label="พื้นที่อัปโหลด">
+            <p><strong>ลากไฟล์รูปภาพ</strong> มาวางที่นี่ หรือคลิกเพื่อเลือกไฟล์</p>
+            <input type="file" id="fileInput" accept="image/*" class="hidden" aria-label="เลือกไฟล์รูปภาพ">
         </div>
 
+        <div class="muted" id="fileInfo">ยังไม่ได้เลือกไฟล์</div>
+        <div id="filePreview" class="preview hidden"></div>
+
         <div class="form-group">
-            <label for="linkUrl">ลิงก์ปลายทาง:</label>
+            <label for="linkUrl">ลิงก์ปลายทาง (ไม่บังคับ):</label>
             <input type="url" id="linkUrl" placeholder="https://example.com">
         </div>
 
-        <button onclick="addImage()">เพิ่มรูปภาพ</button>
-        <button onclick="clearAllImages()" class="btn-danger">ลบทั้งหมด</button>
+        <div class="actions-row">
+            <button id="btnUpload" onclick="addImage()">เพิ่มรูปภาพ</button>
+            <button id="btnClearAll" onclick="clearAllImages()" class="btn-danger">ลบทั้งหมด</button>
+        </div>
 
         <div class="image-list">
             <h2>รายการรูปภาพ</h2>
@@ -166,14 +72,41 @@
     </div>
 
     <script>
-        // โหลดรายการรูปภาพจากเซิร์ฟเวอร์
+        // โหลด/ซิงก์รายการรูปภาพจากเซิร์ฟเวอร์ และซิงก์ลง localStorage เพื่อให้หน้า index อ่านได้
+        let pendingFile = null; // เก็บไฟล์ล่าสุดจาก drop/change
+        const statusArea = document.getElementById('statusArea');
+        const btnUpload = document.getElementById('btnUpload');
+        const btnClearAll = document.getElementById('btnClearAll');
+        const fileInfo = document.getElementById('fileInfo');
+        const filePreview = document.getElementById('filePreview');
+
+        function setStatus(kind, text) {
+            statusArea.className = `status ${kind}`;
+            statusArea.textContent = text;
+            statusArea.classList.remove('hidden');
+        }
+        function clearStatus() { statusArea.classList.add('hidden'); }
+
+        async function fetchImages() {
+            const res = await fetch('/api/images');
+            if (!res.ok) throw new Error('โหลดรายการรูปภาพไม่สำเร็จ');
+            return res.json();
+        }
+
+        async function syncLocalStorageFromServer() {
+            const list = await fetchImages();
+            // เซิร์ฟเวอร์ของเราใช้ฟิลด์ 'url' สำหรับ URL ของรูปภาพ
+            const simplified = list.map(i => ({ imageUrl: i.url, linkUrl: i.linkUrl }));
+            localStorage.setItem('galleryImages', JSON.stringify(simplified));
+            return list;
+        }
+
         async function loadImageList() {
             const imageList = document.getElementById('imageList');
             imageList.innerHTML = '<p>กำลังโหลด...</p>';
             try {
-                const res = await fetch('/api/images');
-                const images = await res.json();
-                if (!Array.isArray(images) || images.length === 0) {
+                const images = await syncLocalStorageFromServer();
+                if (!images.length) {
                     imageList.innerHTML = '<p>ยังไม่มีรูปภาพ</p>';
                     return;
                 }
@@ -185,100 +118,140 @@
                         <div class="image-preview" style="background-image: url(${imageData.url})"></div>
                         <div class="image-info">
                             <h3>รูปภาพ ${index + 1}</h3>
-                            <p><strong>ไฟล์:</strong> ${imageData.filename}</p>
-                            <p><strong>ลิงก์:</strong> ${imageData.linkUrl || 'ไม่มีลิงก์'}</p>
+                            <p class="muted"><strong>ไฟล์:</strong> ${imageData.filename || '(N/A)'} </p>
+                            <p><strong>ลิงก์:</strong> ${imageData.linkUrl ? `<a href="${imageData.linkUrl}" target="_blank">${imageData.linkUrl}</a>` : 'ไม่มีลิงก์'}</p>
                         </div>
                         <div class="image-actions">
-                            <button class="btn-danger" onclick="removeImage('${imageData.filename}')">ลบ</button>
+                            <button class="btn-outline" data-act="open-image">เปิดรูป</button>
+                            <button class="btn-outline" data-act="open-link">เปิดลิงก์</button>
+                            <button class="btn-outline" data-act="copy-url">คัดลอกลิงก์รูป</button>
+                            <button class="btn-danger" data-act="delete">ลบ</button>
                         </div>
                     `;
+                    const actions = imageItem.querySelector('.image-actions');
+                    actions.querySelector('[data-act="open-image"]').addEventListener('click', () => window.open(imageData.url, '_blank'));
+                    actions.querySelector('[data-act="open-link"]').addEventListener('click', () => { if (imageData.linkUrl) { window.open(imageData.linkUrl, '_blank'); } else { setStatus('info', 'รายการนี้ไม่มีลิงก์'); } });
+                    actions.querySelector('[data-act="copy-url"]').addEventListener('click', async () => {
+                        try { await navigator.clipboard.writeText(location.origin + imageData.url); setStatus('success', 'คัดลอกลิงก์รูปแล้ว'); } catch (_) { setStatus('error', 'คัดลอกไม่สำเร็จ'); }
+                    });
+                    actions.querySelector('[data-act="delete"]').addEventListener('click', () => removeImage(imageData.filename));
                     imageList.appendChild(imageItem);
                 });
             } catch (e) {
-                imageList.innerHTML = '<p>เกิดข้อผิดพลาดในการโหลดรายการรูปภาพ</p>';
+                console.error(e);
+                imageList.innerHTML = '<p style="color:#dc3545">เกิดข้อผิดพลาดในการโหลดรายการรูปภาพ</p>';
+                setStatus('error', 'โหลดรายการรูปภาพไม่สำเร็จ');
             }
         }
 
-        // เพิ่มรูปภาพใหม่ (อัปโหลดไปเซิร์ฟเวอร์โดยตรง ไม่แปลง Base64)
+        // เพิ่มรูปภาพใหม่ (อัปโหลดไปเซิร์ฟเวอร์ ไม่มีการจำกัดขนาดไฟล์ฝั่งไคลเอนต์)
         async function addImage() {
             const fileInput = document.getElementById('fileInput');
             const linkUrl = document.getElementById('linkUrl').value;
-            if (!fileInput.files[0]) {
-                alert('กรุณาเลือกไฟล์รูปภาพ');
+
+            const file = pendingFile || (fileInput.files && fileInput.files[0]);
+            if (!file) {
+                setStatus('error', 'กรุณาเลือกไฟล์รูปภาพ');
                 return;
             }
+            if (!file.type.startsWith('image/')) {
+                setStatus('error', 'ไฟล์ไม่ใช่รูปภาพ');
+                return;
+            }
+
             const form = new FormData();
-            form.append('image', fileInput.files[0]);
+            form.append('image', file);
             form.append('linkUrl', linkUrl || '');
             try {
+                btnUpload.disabled = true; btnClearAll.disabled = true; setStatus('info', 'กำลังอัปโหลด...');
                 const res = await fetch('/api/images', { method: 'POST', body: form });
-                if (!res.ok) throw new Error('upload failed');
-                // รีเซ็ตฟอร์ม
+                if (!res.ok) throw new Error('อัปโหลดไม่สำเร็จ');
+                await res.json();
                 fileInput.value = '';
+                pendingFile = null;
                 document.getElementById('linkUrl').value = '';
+                filePreview.classList.add('hidden'); fileInfo.textContent = 'ยังไม่ได้เลือกไฟล์';
                 await loadImageList();
-                alert('เพิ่มรูปภาพเรียบร้อยแล้ว');
+                setStatus('success', 'เพิ่มรูปภาพเรียบร้อยแล้ว');
             } catch (e) {
-                alert('ไม่สามารถอัปโหลดรูปภาพได้');
-            }
+                console.error(e);
+                setStatus('error', 'เกิดข้อผิดพลาดระหว่างอัปโหลดไฟล์');
+            } finally { btnUpload.disabled = false; btnClearAll.disabled = false; }
         }
 
-        // ลบรูปภาพตามชื่อไฟล์
         async function removeImage(filename) {
+            if (!filename) return;
             if (!confirm('คุณแน่ใจหรือไม่ที่จะลบรูปภาพนี้?')) return;
             try {
+                setStatus('info', 'กำลังลบรูปภาพ...');
                 const res = await fetch(`/api/images/${encodeURIComponent(filename)}`, { method: 'DELETE' });
-                if (!res.ok) throw new Error('delete failed');
+                if (!res.ok) throw new Error('ลบไม่สำเร็จ');
                 await loadImageList();
+                setStatus('success', 'ลบรูปภาพเรียบร้อยแล้ว');
             } catch (e) {
-                alert('ลบรูปภาพไม่สำเร็จ');
+                console.error(e);
+                setStatus('error', 'เกิดข้อผิดพลาดระหว่างลบรูปภาพ');
             }
         }
 
-        // ลบรูปภาพทั้งหมดจากเซิร์ฟเวอร์
         async function clearAllImages() {
             if (!confirm('คุณแน่ใจหรือไม่ที่จะลบรูปภาพทั้งหมด?')) return;
             try {
+                setStatus('info', 'กำลังลบทั้งหมด...');
+                btnUpload.disabled = true; btnClearAll.disabled = true;
                 const res = await fetch('/api/images', { method: 'DELETE' });
-                if (!res.ok) throw new Error('clear failed');
+                if (!res.ok) throw new Error('ลบทั้งหมดไม่สำเร็จ');
                 await loadImageList();
-                alert('ลบรูปภาพทั้งหมดเรียบร้อยแล้ว');
+                setStatus('success', 'ลบรูปภาพทั้งหมดเรียบร้อยแล้ว');
             } catch (e) {
-                alert('ลบรูปภาพทั้งหมดไม่สำเร็จ');
-            }
+                console.error(e);
+                setStatus('error', 'เกิดข้อผิดพลาดระหว่างลบทั้งหมด');
+            } finally { btnUpload.disabled = false; btnClearAll.disabled = false; }
         }
 
         // จัดการการลากไฟล์
         const uploadArea = document.getElementById('uploadArea');
         const fileInput = document.getElementById('fileInput');
 
-        uploadArea.addEventListener('click', () => {
-            fileInput.click();
-        });
-
-        uploadArea.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            uploadArea.classList.add('dragover');
-        });
-
-        uploadArea.addEventListener('dragleave', () => {
-            uploadArea.classList.remove('dragover');
-        });
-
+        uploadArea.addEventListener('click', () => { fileInput.click(); });
+        uploadArea.addEventListener('dragover', (e) => { e.preventDefault(); uploadArea.classList.add('dragover'); });
+        uploadArea.addEventListener('dragleave', () => { uploadArea.classList.remove('dragover'); });
         uploadArea.addEventListener('drop', (e) => {
             e.preventDefault();
             uploadArea.classList.remove('dragover');
-            
             const files = e.dataTransfer.files;
             if (files.length > 0 && files[0].type.startsWith('image/')) {
-                fileInput.files = files;
+                // input.files เป็น read-only ในหลายเบราว์เซอร์ -> เก็บไว้ในตัวแปรแทน
+                pendingFile = files[0];
+                fileInfo.textContent = `เลือกไฟล์: ${pendingFile.name} (${Math.round(pendingFile.size/1024)} KB)`;
+                try {
+                    const url = URL.createObjectURL(pendingFile);
+                    filePreview.style.backgroundImage = `url(${url})`;
+                    filePreview.classList.remove('hidden');
+                } catch (err) {}
             } else {
-                alert('กรุณาเลือกไฟล์รูปภาพเท่านั้น');
+                setStatus('error', 'กรุณาเลือกไฟล์รูปภาพเท่านั้น');
+            }
+        });
+
+        // อัปเดต pendingFile เมื่อผู้ใช้เลือกไฟล์ผ่าน dialog
+        fileInput.addEventListener('change', () => {
+            pendingFile = (fileInput.files && fileInput.files[0]) || null;
+            if (pendingFile) {
+                fileInfo.textContent = `เลือกไฟล์: ${pendingFile.name} (${Math.round(pendingFile.size/1024)} KB)`;
+                try {
+                    const url = URL.createObjectURL(pendingFile);
+                    filePreview.style.backgroundImage = `url(${url})`;
+                    filePreview.classList.remove('hidden');
+                } catch (err) {}
+            } else {
+                fileInfo.textContent = 'ยังไม่ได้เลือกไฟล์';
+                filePreview.classList.add('hidden');
             }
         });
 
         // โหลดรายการรูปภาพเมื่อหน้าเว็บโหลดเสร็จ
-        document.addEventListener('DOMContentLoaded', loadImageList);
+        document.addEventListener('DOMContentLoaded', () => { clearStatus(); loadImageList(); });
     </script>
 </body>
 </html>
