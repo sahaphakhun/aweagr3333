@@ -166,91 +166,85 @@
     </div>
 
     <script>
-        // โหลดรายการรูปภาพ
-        function loadImageList() {
-            const images = JSON.parse(localStorage.getItem('galleryImages')) || [];
+        // โหลดรายการรูปภาพจากเซิร์ฟเวอร์
+        async function loadImageList() {
             const imageList = document.getElementById('imageList');
-            
-            if (images.length === 0) {
-                imageList.innerHTML = '<p>ยังไม่มีรูปภาพ</p>';
-                return;
+            imageList.innerHTML = '<p>กำลังโหลด...</p>';
+            try {
+                const res = await fetch('/api/images');
+                const images = await res.json();
+                if (!Array.isArray(images) || images.length === 0) {
+                    imageList.innerHTML = '<p>ยังไม่มีรูปภาพ</p>';
+                    return;
+                }
+                imageList.innerHTML = '';
+                images.forEach((imageData, index) => {
+                    const imageItem = document.createElement('div');
+                    imageItem.className = 'image-item';
+                    imageItem.innerHTML = `
+                        <div class="image-preview" style="background-image: url(${imageData.url})"></div>
+                        <div class="image-info">
+                            <h3>รูปภาพ ${index + 1}</h3>
+                            <p><strong>ไฟล์:</strong> ${imageData.filename}</p>
+                            <p><strong>ลิงก์:</strong> ${imageData.linkUrl || 'ไม่มีลิงก์'}</p>
+                        </div>
+                        <div class="image-actions">
+                            <button class="btn-danger" onclick="removeImage('${imageData.filename}')">ลบ</button>
+                        </div>
+                    `;
+                    imageList.appendChild(imageItem);
+                });
+            } catch (e) {
+                imageList.innerHTML = '<p>เกิดข้อผิดพลาดในการโหลดรายการรูปภาพ</p>';
             }
-
-            imageList.innerHTML = '';
-            
-            images.forEach((imageData, index) => {
-                const imageItem = document.createElement('div');
-                imageItem.className = 'image-item';
-                
-                imageItem.innerHTML = `
-                    <div class="image-preview" style="background-image: url(${imageData.imageUrl})"></div>
-                    <div class="image-info">
-                        <h3>รูปภาพ ${index + 1}</h3>
-                        <p><strong>ลิงก์:</strong> ${imageData.linkUrl || 'ไม่มีลิงก์'}</p>
-                    </div>
-                    <div class="image-actions">
-                        <button class="btn-danger" onclick="removeImage(${index})">ลบ</button>
-                    </div>
-                `;
-                
-                imageList.appendChild(imageItem);
-            });
         }
 
-        // เพิ่มรูปภาพใหม่
-        function addImage() {
+        // เพิ่มรูปภาพใหม่ (อัปโหลดไปเซิร์ฟเวอร์โดยตรง ไม่แปลง Base64)
+        async function addImage() {
             const fileInput = document.getElementById('fileInput');
             const linkUrl = document.getElementById('linkUrl').value;
-            
             if (!fileInput.files[0]) {
                 alert('กรุณาเลือกไฟล์รูปภาพ');
                 return;
             }
-
-            const file = fileInput.files[0];
-            const reader = new FileReader();
-            
-            reader.onload = function(e) {
-                const images = JSON.parse(localStorage.getItem('galleryImages')) || [];
-                
-                const newImage = {
-                    imageUrl: e.target.result,
-                    linkUrl: linkUrl,
-                    timestamp: Date.now()
-                };
-                
-                images.push(newImage);
-                localStorage.setItem('galleryImages', JSON.stringify(images));
-                
+            const form = new FormData();
+            form.append('image', fileInput.files[0]);
+            form.append('linkUrl', linkUrl || '');
+            try {
+                const res = await fetch('/api/images', { method: 'POST', body: form });
+                if (!res.ok) throw new Error('upload failed');
                 // รีเซ็ตฟอร์ม
                 fileInput.value = '';
                 document.getElementById('linkUrl').value = '';
-                
-                // โหลดรายการใหม่
-                loadImageList();
-                
+                await loadImageList();
                 alert('เพิ่มรูปภาพเรียบร้อยแล้ว');
-            };
-            
-            reader.readAsDataURL(file);
-        }
-
-        // ลบรูปภาพ
-        function removeImage(index) {
-            if (confirm('คุณแน่ใจหรือไม่ที่จะลบรูปภาพนี้?')) {
-                const images = JSON.parse(localStorage.getItem('galleryImages')) || [];
-                images.splice(index, 1);
-                localStorage.setItem('galleryImages', JSON.stringify(images));
-                loadImageList();
+            } catch (e) {
+                alert('ไม่สามารถอัปโหลดรูปภาพได้');
             }
         }
 
-        // ลบรูปภาพทั้งหมด
-        function clearAllImages() {
-            if (confirm('คุณแน่ใจหรือไม่ที่จะลบรูปภาพทั้งหมด?')) {
-                localStorage.removeItem('galleryImages');
-                loadImageList();
+        // ลบรูปภาพตามชื่อไฟล์
+        async function removeImage(filename) {
+            if (!confirm('คุณแน่ใจหรือไม่ที่จะลบรูปภาพนี้?')) return;
+            try {
+                const res = await fetch(`/api/images/${encodeURIComponent(filename)}`, { method: 'DELETE' });
+                if (!res.ok) throw new Error('delete failed');
+                await loadImageList();
+            } catch (e) {
+                alert('ลบรูปภาพไม่สำเร็จ');
+            }
+        }
+
+        // ลบรูปภาพทั้งหมดจากเซิร์ฟเวอร์
+        async function clearAllImages() {
+            if (!confirm('คุณแน่ใจหรือไม่ที่จะลบรูปภาพทั้งหมด?')) return;
+            try {
+                const res = await fetch('/api/images', { method: 'DELETE' });
+                if (!res.ok) throw new Error('clear failed');
+                await loadImageList();
                 alert('ลบรูปภาพทั้งหมดเรียบร้อยแล้ว');
+            } catch (e) {
+                alert('ลบรูปภาพทั้งหมดไม่สำเร็จ');
             }
         }
 

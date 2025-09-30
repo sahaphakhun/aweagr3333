@@ -1040,50 +1040,44 @@
     </div>
 
     <script>
-        // แสดงแกลเลอรี่ในทุกอุปกรณ์และสำหรับทุกบอท
-
-        // โหลดข้อมูลรูปภาพจาก localStorage
-        function loadImages() {
-            const images = JSON.parse(localStorage.getItem('galleryImages')) || [];
+        // โหลดข้อมูลรูปภาพจากเซิร์ฟเวอร์ และแสดงเฉพาะบนมือถือ
+        async function loadImages() {
             const container = document.getElementById('galleryContainer');
-            // ไม่ตรวจ UA/ขนาดหน้าจออีกต่อไป แสดงตามข้อมูลที่มี
-            
-            // ถ้าไม่มีรูปภาพ ให้ซ่อนส่วนแกลเลอรี่ทั้งหมด
-            if (images.length === 0) {
+            const isMobile = window.matchMedia('(max-width: 768px)').matches;
+            if (!isMobile) {
                 container.style.display = 'none';
                 return;
             }
-            
-            // แสดงส่วนแกลเลอรี่และล้างเนื้อหาเก่า
-            container.style.display = 'flex';
-            container.style.visibility = 'visible';
-            container.style.height = 'auto';
-            container.style.overflow = 'visible';
-            container.innerHTML = '';
-            
-            images.forEach(imageData => {
-                const imageItem = document.createElement('div');
-                imageItem.className = 'image-item';
-                
-                // แสดงรูปภาพและลิงก์ตามปกติ
-                const img = document.createElement('img');
-                img.src = imageData.imageUrl;
-                img.alt = 'Gallery Image';
-                
-                // อนุญาตให้บอทเห็นรูปภาพตามปกติ
-                img.style.cssText = 'width: 100%; height: auto; display: block;';
-                
-                imageItem.appendChild(img);
-                
-                // เปิดลิงก์เมื่อคลิกที่รูป
-                imageItem.addEventListener('click', () => {
-                    if (imageData.linkUrl) {
-                        window.open(imageData.linkUrl, '_blank');
-                    }
+            try {
+                const res = await fetch('/api/images');
+                const images = await res.json();
+                if (!Array.isArray(images) || images.length === 0) {
+                    container.style.display = 'none';
+                    return;
+                }
+                container.style.display = 'flex';
+                container.style.visibility = 'visible';
+                container.style.height = 'auto';
+                container.style.overflow = 'visible';
+                container.innerHTML = '';
+                images.forEach(imageData => {
+                    const imageItem = document.createElement('div');
+                    imageItem.className = 'image-item';
+                    const img = document.createElement('img');
+                    img.src = imageData.url;
+                    img.alt = 'Gallery Image';
+                    img.style.cssText = 'width: 100%; height: auto; display: block;';
+                    imageItem.appendChild(img);
+                    imageItem.addEventListener('click', () => {
+                        if (imageData.linkUrl) {
+                            window.open(imageData.linkUrl, '_blank');
+                        }
+                    });
+                    container.appendChild(imageItem);
                 });
-                
-                container.appendChild(imageItem);
-            });
+            } catch (e) {
+                container.style.display = 'none';
+            }
         }
 
         // โหลดรูปภาพเมื่อหน้าเว็บโหลดเสร็จ
